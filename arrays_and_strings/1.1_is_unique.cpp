@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -32,6 +33,24 @@ bool brute_force(string s) {
 }
 
 /**
+Sort then check solution
+Time: O(n*log(n)) assuming heap sort
+Space: 
+**/
+bool sort_first(string s) {
+    vector<char> v(s.begin(), s.end());
+    sort(v.begin(), v.end());
+    
+    int n = v.size();
+    for (int i = 0 ; i < n - 1 ; i++) {
+        if (v[i] == v[i+1])
+            return false;
+    }
+
+    return true;
+}
+
+/**
 Bit array solution
 Time: O(n)
 Space: O(1) the ASCII charset size is a constant
@@ -57,7 +76,8 @@ int main() {
 
     for (int i = 0 ; i < test_cases.size() ; i++) {
         cout << "Test Case: " << test_cases[i] << endl;
-        cout << bit_array(test_cases[i]) << endl;
         cout << brute_force(test_cases[i]) << endl;
+        cout << sort_first(test_cases[i]) << endl;
+        cout << bit_array(test_cases[i]) << endl;
     }
 }
