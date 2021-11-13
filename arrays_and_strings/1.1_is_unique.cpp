@@ -15,23 +15,49 @@ using namespace std;
  *
  **/
 
+/**
+Brute force two loops solution
+Time: O(n^2)
+Space: O(1)
+**/
+bool brute_force(string s) {
+    for (int i = 0 ; i < s.size() ; i++) {
+        for (int j = 0 ; j < s.size() ; j++) {
+            if (i != j && s[i] == s[j]) 
+                return false;
+        }
+    }
+
+    return true;
+}
+
+/**
+Bit array solution
+Time: O(n)
+Space: O(1) the ASCII charset size is a constant
+**/
 bool bit_array(string s) {
     if (s.size() > 128)
-        return true;
+        return false;
 
     vector<bool> alphabet(128, false);
     for (int i = 0 ; i < s.size() ; i++) {
         int index = (int) s[i];
         if (alphabet[index] == true)
-            return true;
+            return false;
         else
             alphabet[index] = true;
     }
 
-    return false;
+    return true;
 }
 
 int main() {
-    cout << bit_array("penis") << endl;
-    cout << bit_array("hello") << endl;
+    vector<string> test_cases = {"hello", "world", "", "a", "h4ck3r"};
+
+    for (int i = 0 ; i < test_cases.size() ; i++) {
+        cout << "Test Case: " << test_cases[i] << endl;
+        cout << bit_array(test_cases[i]) << endl;
+        cout << brute_force(test_cases[i]) << endl;
+    }
 }
