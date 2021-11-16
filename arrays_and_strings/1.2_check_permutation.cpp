@@ -17,6 +17,11 @@ Solutions:
 
 **/
 
+/**
+Hash Map Solution
+Time: O(N)
+Space: O(1)
+**/
 bool hash_map(string a, string b) {
     unordered_map<char, int> map;
     
@@ -40,10 +45,10 @@ bool hash_map(string a, string b) {
 }
 
 int main() {
-    string tests[][2] = { {"sadeas", "dassea"} };
+    string tests[][2] = { {"sadeas", "dassea"}, {"", ""}, {"a", "a"}, {"ball", "cars"} };
     
     for (auto& test : tests) {
         cout << test[0] << " " << test[1] << endl;
-        cout << hash_map("sadeas", "dassea") << endl;
+        cout << hash_map(test[0], test[1]) << endl;
     }
 }
