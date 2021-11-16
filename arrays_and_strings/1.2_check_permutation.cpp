@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <algorithm>
 
 using namespace std;
 
@@ -44,11 +45,22 @@ bool hash_map(string a, string b) {
     return true;
 }
 
+bool sort_both(string a, string b) {
+    vector<char> va(a.begin(), a.end());
+    sort(va.begin(), va.end());
+
+    vector<char> vb(b.begin(), b.end());
+    sort(vb.begin(), vb.end());
+
+    return va == vb;
+}
+
 int main() {
     string tests[][2] = { {"sadeas", "dassea"}, {"", ""}, {"a", "a"}, {"ball", "cars"} };
     
     for (auto& test : tests) {
         cout << test[0] << " " << test[1] << endl;
-        cout << hash_map(test[0], test[1]) << endl;
+        cout << "HASH MAP SOLUTION: " <<  hash_map(test[0], test[1]) << endl;
+        cout << "SORT SOLUTION: " << hash_map(test[0], test[1]) << endl;
     }
 }
