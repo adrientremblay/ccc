@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -16,6 +17,34 @@ Solutions:
 - Count each space, then go backwards and move everything to the exact correct place
 **/
 
+string count_spaces(string s) {
+    int spaces = 0;
+    int last_char = 0;
+    for (int i = 0 ; i < s.length() - 2 ; i++)
+        if (s[i] == ' ')
+            if (s[i+1] != ' ')
+                spaces++;
+        else
+            last_char = s[i];
+
+    for (int i = last_char ; i > 0 ; i--) {
+        if (s[i] == ' ') {
+            s[i] = '%';
+            s[i + 1] = '2';
+            s[i + 2] = '0';
+            spaces--;
+        } else {
+            s[i + (spaces * 2)] = s[i];
+        }
+    } 
+
+    return s;
+}
+
 int main() {
-    cout << "hello" << endl;
+    string test_cases[] = { "Mr John Smith    " };
+    for (string s : test_cases) {
+        cout << s << endl;
+        cout << "COUNT SPACES: " << count_spaces(s) << endl;
+    }
 }
