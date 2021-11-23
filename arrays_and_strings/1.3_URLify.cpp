@@ -12,27 +12,44 @@ Example:
 "Mr%20John%20Smith"
 
 Solutions:
+- build a new string
 - Copy to a new string
 - Each time find a space, move everything over 
 - Count each space, then go backwards and move everything to the exact correct place
 **/
 
 /**
+Build New String Solution
+Time: O(n^2)
+Space: O(n)
+**/
+string build_new_string(string s, int last_char) {
+    string ans;    
+
+    for (int i = 0 ; i <= last_char ; i++) {
+        char c = s[i];
+        if (c == ' ')
+            ans += "%20";
+        else 
+            ans += c;
+    }
+
+    return ans;
+}
+
+/**
 Count Spaces Solution
 Time: O(n)
 Space: O(1)
 **/
-string count_spaces(string s) {
+string count_spaces(string s, int last_char) {
     int spaces = 0;
-    int last_char = 0;
     for (int i = 0 ; i < s.length() ; i++) {
         if (s[i] == ' ') {
             if (i == s.length() - 1 || s[i+1] == ' ')
                 break;
     
             spaces++;
-        } else {
-            last_char = i;
         }
     }
 
@@ -51,9 +68,6 @@ string count_spaces(string s) {
 }
 
 int main() {
-    string test_cases[] = { "Mr John Smith    ", "", "a" };
-    for (string s : test_cases) {
-        cout << s << endl;
-        cout << "COUNT SPACES: " << count_spaces(s) << endl;
-    }
+    cout << build_new_string("Mr John Smith    ", 12) << endl;
+    cout << count_spaces("Mr John Smith    ", 12) << endl;
 }
