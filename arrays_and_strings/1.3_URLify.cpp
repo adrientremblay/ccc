@@ -20,19 +20,23 @@ Solutions:
 string count_spaces(string s) {
     int spaces = 0;
     int last_char = 0;
-    for (int i = 0 ; i < s.length() - 2 ; i++)
-        if (s[i] == ' ')
-            if (s[i+1] != ' ')
-                spaces++;
-        else
-            last_char = s[i];
+    for (int i = 0 ; i < s.length() ; i++) {
+        if (s[i] == ' ') {
+            if (i == s.length() - 1 || s[i+1] == ' ')
+                break;
+    
+            spaces++;
+        } else {
+            last_char = i;
+        }
+    }
 
     for (int i = last_char ; i > 0 ; i--) {
         if (s[i] == ' ') {
-            s[i] = '%';
-            s[i + 1] = '2';
-            s[i + 2] = '0';
             spaces--;
+            s[i + (spaces*2)] = '%';
+            s[i + (spaces*2) + 1] = '2';
+            s[i + (spaces*2) + 2] = '0';
         } else {
             s[i + (spaces * 2)] = s[i];
         }
