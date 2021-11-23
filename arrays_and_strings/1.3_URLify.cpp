@@ -38,6 +38,29 @@ string build_new_string(string s, int last_char) {
 }
 
 /**
+Copy to New String Solution
+Time: O(n)
+Space: O(n)
+**/
+string copy_to_new_string(string s, int last_char) {
+    string ans;    
+    ans.resize(s.size());
+
+    int j = 0;
+    for (int i = 0 ; i <= last_char ; i++) {
+        if (s[i] == ' ') {
+            ans[j++] = '%';
+            ans[j++] = '2';
+            ans[j++] = '0';
+        } else {
+            ans[j++] = s[i]; 
+        }
+    }
+
+    return ans;
+}
+
+/**
 Count Spaces Solution
 Time: O(n)
 Space: O(1)
@@ -69,5 +92,6 @@ string count_spaces(string s, int last_char) {
 
 int main() {
     cout << build_new_string("Mr John Smith    ", 12) << endl;
+    cout << copy_to_new_string("Mr John Smith    ", 12) << endl;
     cout << count_spaces("Mr John Smith    ", 12) << endl;
 }
