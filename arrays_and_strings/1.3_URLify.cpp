@@ -17,6 +17,11 @@ Solutions:
 - Count each space, then go backwards and move everything to the exact correct place
 **/
 
+/**
+Count Spaces Solution
+Time: O(n)
+Space: O(1)
+**/
 string count_spaces(string s) {
     int spaces = 0;
     int last_char = 0;
@@ -46,7 +51,7 @@ string count_spaces(string s) {
 }
 
 int main() {
-    string test_cases[] = { "Mr John Smith    " };
+    string test_cases[] = { "Mr John Smith    ", "", "a" };
     for (string s : test_cases) {
         cout << s << endl;
         cout << "COUNT SPACES: " << count_spaces(s) << endl;
