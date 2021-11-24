@@ -61,6 +61,25 @@ string copy_to_new_string(string s, int last_char) {
 }
 
 /**
+Move Everything Over Solution
+Time: O(n^2)
+Space: O(1)
+**/
+string move_everything(string s, int last_char) {
+   for (int i = 0 ; i <= last_char ; i++) {
+        if (s[i] == ' ') {
+            for (int j = s.size() - 2; j > i; j--) {
+                s[j+2] = s[j];
+            }
+            s[i] = '%';
+            s[i+1] = '2';
+            s[i+2] = '0';
+        }
+    }
+    return s;
+}
+
+/**
 Count Spaces Solution
 Time: O(n)
 Space: O(1)
@@ -93,5 +112,6 @@ string count_spaces(string s, int last_char) {
 int main() {
     cout << build_new_string("Mr John Smith    ", 12) << endl;
     cout << copy_to_new_string("Mr John Smith    ", 12) << endl;
+    cout << move_everything("Mr John Smith    ", 12) << endl;
     cout << count_spaces("Mr John Smith    ", 12) << endl;
 }
