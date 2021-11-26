@@ -1,3 +1,8 @@
+#include <iostream>
+#include <string>
+#include <unordered_map>
+using namespace std;
+
 /**
 Palindrome Permutation: Given a string, write a function to check if it is a permutation of a palindrome. A palindrome is a word or phrase that is the same forwards and backwards. A permutation is a rearrangement of the letters. The palindrome does not need to be limited to just dictionary words.
 
@@ -14,4 +19,36 @@ Tact Coa
 **/
 
 bool hashmap(string s) {
+    unordered_map<char, int> counts; 
+    for (char c :s) {
+        if (c == ' ')
+            continue;
+        c = tolower(c);
+    
+        if (counts.find(c) == counts.end())
+            counts[c] = 1;
+        else 
+            counts[c]++;
+    }
+    
+    bool middle_found = false;
+    for (const auto &pair : counts) {
+        if (pair.second % 2 != 0) {
+            if (middle_found)
+                return false;
+            middle_found = true;
+        }
+    }
+    
+    return true;
+}
+
+int main() {
+    string tests[] = { "Tact Coa", "Tact Coat", "aaa", "aaaB", "" };
+
+    for (string s : tests) {
+        cout << s << hashmap(s) << endl;
+    }
+
+    return 0;
 }
