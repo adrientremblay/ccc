@@ -10,14 +10,19 @@ notes:
 - ignore spaces
 
 solutions:
-- brute force: generate every single permutation, check each one if it's a permutation (not coding this lol)
+- brute force: generate every single permutation, check each one if it's a permutation (not coding this)
 - hash map, check every char has an even count, except at most one char
-- sort and check that every num has even count, except at most one char
+- sort and check that every num has even count, except at most one char (not coding this)
 
 Ex:
 Tact Coa
 **/
 
+/**
+Hashmap solution
+Time: O(n)
+Space: (n)
+**/
 bool hashmap(string s) {
     unordered_map<char, int> counts; 
     for (char c :s) {
