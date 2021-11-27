@@ -13,6 +13,8 @@ solutions:
 - brute force: generate every single permutation, check each one if it's a permutation (not coding this)
 - hash map, check every char has an even count, except at most one char
 - sort and check that every num has even count, except at most one char (not coding this)
+- bit vector crap (not coding this)
+- bitmap solution
 
 Ex:
 Tact Coa
@@ -25,7 +27,7 @@ Space: (n)
 **/
 bool hashmap(string s) {
     unordered_map<char, int> counts; 
-    for (char c :s) {
+    for (char c : s) {
         if (c == ' ')
             continue;
         c = tolower(c);
@@ -48,11 +50,36 @@ bool hashmap(string s) {
     return true;
 }
 
+/**
+Bitmap Solution
+Time: O(n)
+Space: O(n)
+**/
+bool bitmap(string s) {
+    bool odds[26] = {false};
+
+    for (char c : s) {
+        int index = ((int)'z') - ((int)tolower(c));
+        odds[index] = !odds[index];
+    }
+
+    bool middle_found = false;
+    for (bool b : odds) {
+        if (b) {
+            if (middle_found)
+                return false;
+            middle_found = true;
+        }
+    }
+
+    return true;
+}
+
 int main() {
     string tests[] = { "Tact Coa", "Tact Coat", "aaa", "aaaB", "" };
 
     for (string s : tests) {
-        cout << s << hashmap(s) << endl;
+        cout << s << hashmap(s) << bitmap(s) << endl;
     }
 
     return 0;
