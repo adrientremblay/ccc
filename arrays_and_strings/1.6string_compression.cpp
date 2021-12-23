@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -20,7 +21,7 @@ string string_compression(string s) {
     if (s.length() == 0)
         return "";
 
-    string compressed = ""; 
+    stringstream compressed; 
 
     char current = s[0];
     int count = 0;
@@ -28,14 +29,14 @@ string string_compression(string s) {
         if (c == current) {
             count++;
         } else {
-            compressed += current + to_string(count);
+            compressed << current << to_string(count);
             current = c;
             count = 1;
         }
     }
-    compressed += current + to_string(count);
+    compressed << current << to_string(count);
 
-    return compressed.length() < s.length() ? compressed : s; 
+    return compressed.gcount() < s.length() ? compressed.str() : s; 
 } 
 
 int main() {
