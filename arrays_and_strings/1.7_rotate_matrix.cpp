@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -12,17 +13,27 @@ Solutions:
     - Build arrays for each column O(n)
 **/
 
-void rotate_matrix_1(int arr[3][3]) {
+/**
+Works by creating new rows for each column
+**/
+vector<vector<int>> rotate_matrix_1(vector<vector<int>> arr) {
     arr[1][1] = 0;
+    return arr;
+}
+
+
+/**
+Utility function
+**/
+void print_2d_array(vector<vector<int>> arr) {
 }
 
 int main() {
-    int test_case_1[3][3] = {
+    vector<vector<int>> test_case_1 {
         { 1, 2, 3 },
         { 4, 5, 6 },
         { 7, 8, 9 }
     };
 
-    rotate_matrix_1(test_case_1);
-    cout << test_case_1[1][1] << endl;
+    cout << rotate_matrix_1(test_case_1)[1][1] << endl;
 }
