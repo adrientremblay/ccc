@@ -14,18 +14,33 @@ Solutions:
 **/
 
 /**
-Works by creating new rows for each column
+Solution 1: Works by creating new rows for each column, transferring new values
+Time: O(N^2)
+Space: O(N^2)
 **/
-vector<vector<int>> rotate_matrix_1(vector<vector<int>> arr) {
-    arr[1][1] = 0;
-    return arr;
+vector<vector<int>> rotate_matrix_1(vector<vector<int>> matrix) {
+    int N = matrix.size();
+    vector<vector<int>> ans(N, vector<int>(N));
+
+    for (int i = 0 ; i < N ; i++)
+        for (int j = 0 ; j < N ; j++)
+            ans[j][N-i-1] = matrix[i][j];
+
+    return ans;
 }
 
-
 /**
-Utility function
+Utility function, print an NxN matrix
 **/
-void print_2d_array(vector<vector<int>> arr) {
+void print_matrix(vector<vector<int>> matrix) {
+    int N = matrix.size();
+    for (int i = 0 ; i < N ; i++) {
+        cout << "{";
+        for (int j = 0 ; j < N ; j++) {
+            cout << matrix[i][j] << ", ";
+        }
+        cout << "}" << endl;
+    }
 }
 
 int main() {
@@ -35,5 +50,5 @@ int main() {
         { 7, 8, 9 }
     };
 
-    cout << rotate_matrix_1(test_case_1)[1][1] << endl;
+    print_matrix(rotate_matrix_1(test_case_1));
 }
