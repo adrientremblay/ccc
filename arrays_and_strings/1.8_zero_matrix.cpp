@@ -11,17 +11,17 @@ Solutions:
 - Brute force
     - make a copy of the matrix
     - loop through matrix item by item and zero rows and columns as you go
-- optimal
+- two step solution 
     - make bool array representing the columns and rows of size N and M respectively
-    - loop through each of these arrays. if false search for 0 and if found mark column and row to be zeroed
+    - loop through entire matrix and update values for rows and cols accordingly
     - make copy of the matrix
-    - zero all the rows and columns
+    - loop through rows, then calls and zero all rows and cols respectively
 **/
 
 /**
-Solution 1: brute force
-Time: O(N^2)
-Space: O(N^2)
+Solution 1: two step solution
+Time: O(MN)
+Space: O(M + N)
 **/
 vector<vector<int>> zero_matrix_1(vector<vector<int>> matrix) {
     int M = matrix.size();
