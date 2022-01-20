@@ -2,6 +2,7 @@
 
 using namespace std;
 
-class Node {
-    Node next = 
-}
+struct Node {
+    int data;
+    struct Node* next;
+};
