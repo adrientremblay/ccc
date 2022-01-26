@@ -1,8 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class Node {
-public:
+struct Node {
     Node* next;
     int data;
 
@@ -10,29 +9,79 @@ public:
         next = nullptr;
         data = d;
     }
+};
 
-    void appendToTail(int d) {
-        Node* end = new Node(d);
-        Node* n = this;
-        while (n->next != nullptr) {
-            cout << n->data << endl;
-            n = n->next;
-        }
-        n->next = end;
+class LinkedList {
+
+public:
+    Node* head;
+    Node* tail;
+
+    int get_head() {
+        if (head == nullptr)
+            return NULL;
+    
+        return head->val;
     }
+
+    int get_tail() {
+        if (tail == nullptr)
+            return NULL;
+    
+        return tail->val;
+    }
+
+    int get(int index) {
+
+    }
+
+    void push_head(int d) {
+        Node* new_head = new Node(d);
+        new_head->next = head;
+        head = new_head;
+    }
+
+    void push_tail(int d) {
+        Node* new_tail = new Node(d);
+        tail->next = new_tail;
+        tail = new_tail;
+    }
+
+    void delete_head() {
+        if (head == nullptr)
+            return;
+
+        head = head->next;
+    }
+
+    void delete_tail() {
+        
+    }
+
+    void delete(int index) {
+
+    }
+
+    void push(int index) {
+
+    }
+
+    void print_list() {
+        cout << head->data;
+        Node* cur = head->next;
+        while (cur != nullptr) {
+            cout << " -> " << cur->data;
+            cur = cur->next;
+        }
+        cout << endl;
+    } 
 };
 
 int main() {
-    Node* head = new Node(0);
-    head->appendToTail(1);
-    head->appendToTail(2);
-    head->appendToTail(3);
-
-    cout << "printing link list:" << endl;
-    Node* cur = head;
-    while (cur != nullptr) {
-        cout << cur->data << endl;
-        cur = cur->next;
-    }
-
+    LinkedList* l = new LinkedList(1);
+    l->push_to_tail(2);
+    l->push_to_tail(3);
+    l->push_to_tail(4);
+    l->push_to_tail(5);
+    l->print_list();
 }
