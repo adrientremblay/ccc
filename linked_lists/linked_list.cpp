@@ -12,10 +12,11 @@ struct Node {
 };
 
 class LinkedList {
-
 public:
     Node* head;
     Node* tail;
+
+    // GET METHODS
 
     int get_head() {
         if (head == nullptr)
@@ -32,8 +33,18 @@ public:
     }
 
     int get(int index) {
+        int count = 0;
+        Node* cur = head;
+        
+        while (count < index) {
+            count++;
+            cur = cur->next;            
+        }
 
+        return cur->value;
     }
+
+    // PUSH METHODS
 
     void push_head(int d) {
         Node* new_head = new Node(d);
@@ -47,24 +58,64 @@ public:
         tail = new_tail;
     }
 
+    void push(int index, int val) {
+        if (index == 0)
+            push_head(val);
+
+        // continue here
+    }
+
+    // DELETE METHODS
+
     void delete_head() {
         if (head == nullptr)
             return;
+
+        if (head == tail) {
+            head = nullptr;
+            tail = nullptr;
+        }
 
         head = head->next;
     }
 
     void delete_tail() {
-        
+        if (tail == nullptr)
+            return;
+
+        if (head == tail) {
+            head = nullptr;
+            tail = nullptr;
+        }
+
+        Node* cur = head; 
+        while (cur->next != tail) {
+            cur = cur->next; 
+        }
+
+        cur->next = nullptr;
+        tail = cur;
     }
 
     void delete(int index) {
+        if (index == 0)
+            delete_head();
 
+        int count = 0;
+        Node* cur = head;
+        while (count < index - 1) {
+            count++;
+            cur = cur->next;
+        }
+
+        if (cur->next == tail)
+            delete_tail();
+
+        cur->next = cur->next->next; 
     }
 
-    void push(int index) {
 
-    }
+    // UTILITY METHODS
 
     void print_list() {
         cout << head->data;
